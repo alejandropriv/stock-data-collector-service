@@ -1,5 +1,5 @@
 datacollectorservice:
-  application: data-collector-service
+  application: data-collector
   name: data-collector-service
   namespace: data-collector-service
   image:
