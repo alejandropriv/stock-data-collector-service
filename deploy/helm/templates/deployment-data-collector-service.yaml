@@ -31,6 +31,10 @@ spec:
         - name: {{ .Values.datacollectorservice.service.name }}
           image: "{{ .Values.datacollectorservice.image.registry }}/{{ .Values.datacollectorservice.image.name }}:{{ .Values.datacollectorservice.image.version }}"
           imagePullPolicy: IfNotPresent
+          command:
+          - /bin/sh
+          - -c
+          - sleep 1000
           ports:
             - name: {{ .Values.datacollectorservice.port.name }}
               containerPort: {{ .Values.datacollectorservice.port.number }}
