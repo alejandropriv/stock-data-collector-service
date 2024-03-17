@@ -16,7 +16,6 @@ datacollectorservice:
     port: 8080
     type: ClusterIP
   
-  serviceAccountName: data-collector-admin
   stage: development
   tier: backend
   version: 0.0.1
