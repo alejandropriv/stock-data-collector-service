@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.datacollectorservice.serviceName }}
+  name: {{ .Values.datacollectorservice.name }}
   namespace: {{ .Values.datacollectorservice.namespace }}
   labels:
     application: {{ .Values.datacollectorservice.application }}

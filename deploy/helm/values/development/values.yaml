@@ -1,5 +1,6 @@
 datacollectorservice:
   application: data-collector-service
+  name: data-collector-service
   image:
     registry: registry.hub.docker.com/library
     name: busybox
