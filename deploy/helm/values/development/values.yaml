@@ -9,7 +9,6 @@ datacollectorservice:
     name: data-collector-port
     number: 2500
   replicaCount: 2
-  repository: busybox
   service:
     name: data-collector-svc
     port: 8080

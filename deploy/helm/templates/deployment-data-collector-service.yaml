@@ -20,20 +20,16 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "pod.defaultLabels" . | nindent 8 }}
         application: {{ .Values.datacollectorservice.application }}
         version: {{ .Values.datacollectorservice.version }}
         stage: {{ .Values.datacollectorservice.stage }}
         #helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
         tier: {{ .Values.datacollectorservice.tier }}
-      annotations:
-        #checksum/configmap: {{ include (print $.Template.BasePath "/configmap-datacollectorservice.yaml") . | sha256sum }}
-        #checksum/secret: {{ include (print $.Template.BasePath "/secret-datacollectorservice.yaml") . | sha256sum }}
     spec:
       serviceAccountName: {{ .Values.datacollectorservice.serviceAccountName }}
       containers:
         - name: {{ .Values.datacollectorservice.service.name }}
-          image: "{{ .Values.registry }}/{{ .Values.datacollectorservice.repository }}:{{ .Values.datacollectorservice.version }}"
+          image: "{{ .Values.datacollectorservice.image.registry }}/{{ .Values.datacollectorservice.image.name }}:{{ .Values.datacollectorservice.image.version }}"
           imagePullPolicy: IfNotPresent
           ports:
             - name: {{ .Values.datacollectorservice.port.name }}
@@ -54,12 +50,3 @@ spec:
                   key: {{ $key }}
             {{- end }}
             {{- end }}
-            #{{- if $.Values.datacollectorservice.configMap }}
-            #{{- range $key, $values := $.Values.datacollectorservice.configMap }}
-            #- name: {{ $key }}
-            #  valueFrom:
-            #    configMapKeyRef:
-            #      name: {{ $.Values.datacollectorservice.serviceName }}
-            #      key: {{ $key }}
-            #{{- end }}
-            #{{- end }}
